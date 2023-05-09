@@ -1,0 +1,36 @@
+PidFile /tmp/sshd.pid
+Banner none
+
+Port 22
+
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+LogLevel INFO
+
+LoginGraceTime 160
+PermitRootLogin no
+
+MaxAuthTries 5
+MaxSessions 16
+PubkeyAuthentication yes
+
+AuthorizedKeysFile	.ssh/authorized_keys
+
+PasswordAuthentication no
+PermitEmptyPasswords no
+
+AllowTcpForwarding yes
+GatewayPorts no
+X11Forwarding no
+Subsystem	sftp	internal-sftp
+
+
+UsePAM yes
+ChallengeResponseAuthentication yes
+
+AuthenticationMethods publickey,keyboard-interactive
